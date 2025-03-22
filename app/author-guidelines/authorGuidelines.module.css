@@ -1,0 +1,123 @@
+@media (max-width: 475px) {
+    .content .pageContent{
+        width: 90%;
+        margin-top: 30px;
+        padding: 10px;
+    }
+
+    .content .pageContent section p, .content .pageContent section strong{
+        margin-left: 15px;
+        font-size: 14px;
+        text-align: justify;
+    }
+
+    .pageContent .identation{
+        margin-left: 10px;
+    }
+
+} 
+
+@media (min-width: 476px) and (max-width: 640px) {
+    .content .pageContent{
+        width: 80%;
+        margin-top: 30px;
+        padding: 10px;
+    }
+
+    .content .pageContent section p, .content .pageContent section strong{
+        margin-left: 15px;
+        font-size: 15px;
+        text-align: justify;
+    }
+
+    .pageContent .identation{
+        margin-left: 10px;
+    }
+} 
+@media (min-width: 640px) and (max-width: 768px) {
+    .content .pageContent{
+        width: 70%;
+        margin-top: 30px;
+        padding: 10px;
+    }
+
+    .content .pageContent section p, .content .pageContent section strong{
+        margin-left: 18px;
+        font-size: 16px;
+        text-align: justify;
+    }
+
+    .pageContent .identation{
+        margin-left: 13px;
+    }
+} 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .content .pageContent{
+        width: 60%;
+        margin-top: 30px;
+    }
+
+    .content .pageContent section p, .content .pageContent section strong{
+        margin-left: 18px;
+        font-size: 17px;
+        text-align: justify;
+    }
+
+    .pageContent .identation{
+        margin-left: 13px;
+    }
+} 
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .content .pageContent{
+        width: 60%;
+        margin-top: 30px;
+    }
+
+    .content .pageContent section p, .content .pageContent section strong{
+        margin-left: 18px;
+        font-size: 17px;
+        text-align: justify;
+    }
+
+    .pageContent .identation{
+        margin-left: 13px;
+    }
+} 
+
+
+.pageContent{
+    height: auto;
+    width: 50%;
+    margin: auto;
+    margin-top: 55px;
+    margin-bottom: 55px;
+    opacity: 0.85;
+
+}
+
+.pageContent section{
+        margin-bottom: 30px;
+    
+       
+    
+       
+    }
+
+    .pageContent section  p{
+        text-align: justify;
+        margin-left: 35px;
+        line-height: 1.25em;
+        margin-bottom: 15px;
+    }
+    .pageContent section  strong{
+        margin-left: 35px;
+    }
+ .pageContent h1{
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+.identation{
+    margin-left: 35px;
+}

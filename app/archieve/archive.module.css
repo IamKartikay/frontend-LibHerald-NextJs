@@ -1,0 +1,250 @@
+@media (max-width: 475px) {
+    .content .archBody{
+        margin-top: 30px;
+    }
+
+    .archBody .a1, .archBody .a2{
+        width: 80%;
+    }
+
+    .archBody .dropdownContainer{
+        width: 90%;
+    }
+
+    .archBody .dropdownContent{
+        max-height: calc(40vh);
+        overflow: scroll;
+    }
+
+    .flexItem .flexItemColumn1{
+        width: 80%;
+        font-size: 14px;
+    }
+
+    .flexItem .flexItemColumn2{
+        width: 20%;
+        font-size: 14px;
+    }
+} 
+@media (min-width: 476px) and (max-width: 640px) {
+    .content .archBody{
+        margin-top: 30px;
+    }
+
+    .archBody .a1, .archBody .a2{
+        width: 80%;
+    }
+
+    .archBody .dropdownContainer{
+        width: 60%;
+    }
+
+    .archBody .dropdownContent{
+        max-height: calc(40vh);
+        overflow: scroll;
+    }
+
+    .flexItem .flexItemColumn1{
+        width: 80%;
+        font-size: 15px;
+    }
+
+    .flexItem .flexItemColumn2{
+        width: 20%;
+        font-size: 15px;
+    }  
+} 
+@media (min-width: 640px) and (max-width: 768px) {
+    .content .archBody{
+        margin-top: 30px;
+    }
+
+    .archBody .a1, .archBody .a2{
+        width: 80%;
+    }
+
+    .archBody .dropdownContainer{
+        width: 60%;
+    }
+
+    .archBody .dropdownContent{
+        max-height: calc(40vh);
+        overflow: scroll;
+    }
+
+    .flexItem .flexItemColumn1{
+        width: 70%;
+        font-size: 16px;
+    }
+
+    .flexItem .flexItemColumn2{
+        width: 30%;
+        font-size: 16px;
+    } 
+} 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .content .archBody{
+        margin-top: 30px;
+    }
+
+    .archBody .a1, .archBody .a2{
+        width: 70%;
+    }
+
+    .archBody .dropdownContainer{
+        width: 50%;
+    }
+
+    .archBody .dropdownContent{
+        max-height: calc(40vh);
+        overflow: scroll;
+    }
+
+    .flexItem .flexItemColumn1{
+        width: 60%;
+        font-size: 17px;
+    }
+
+    .flexItem .flexItemColumn2{
+        width: 40%;
+        font-size: 17px;
+    } 
+} 
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .content .archBody{
+        margin-top: 30px;
+    }
+
+    .archBody .a1, .archBody .a2{
+        width: 60%;
+    }
+
+    .archBody .dropdownContainer{
+        width: 40%;
+    }
+
+    .archBody .dropdownContent{
+        max-height: calc(40vh);
+        overflow: scroll;
+    }
+
+    .flexItem .flexItemColumn1{
+        width: 50%;
+        font-size: 18px;
+    }
+
+    .flexItem .flexItemColumn2{
+        width: 50%;
+        font-size: 18px;
+    } 
+} 
+
+.archBody{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.a1, .a2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 50%;
+    margin-bottom: 100px;
+}
+
+.a2{
+    width: 30%;
+}
+
+.table1{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    min-height: auto;
+    max-height: 475px;
+    border: 2px solid black;
+    overflow-y: scroll;
+}
+
+.table1 p{
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.flexTable{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: auto;
+    max-height: 475px;
+    border: 2px solid black;
+    overflow-y: scroll;
+}
+
+.flexItem{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexItem:hover{
+    background: rgb(177, 190, 242);
+    font-weight: bold;
+}
+
+.flexItemColumn1, .flexItemColumn2{
+    text-align: center;
+    width: 50%;
+}
+
+.header:hover{
+    font-weight: normal;
+    background: none;
+}
+
+.table1 > :nth-child(1),
+.table1 > :nth-child(2){
+    position: sticky;
+    top: 0;
+    background-color: #3a54b4;
+}
+
+.dropdownContainer{
+    border: 1px solid black;
+    width: 286px;
+    height: 46px;
+}
+
+.dropdownButton{
+    text-align: start;
+    padding: 0px 10px 0px 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dropdownContent{
+    border: 1px solid black;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+    background-color: white;
+}
+
+.dropdownContent p{
+    margin-left: 15px;
+    line-height: 1.25em;
+}
+
+.dropdownItem:hover{
+    background-color: #3a54b4;
+    color: white;
+}
