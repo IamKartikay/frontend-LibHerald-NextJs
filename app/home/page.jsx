@@ -1,75 +1,87 @@
-"use client"
-import { useState } from "react"
+import Image from "next/image"
 import book from "../../public/Lib.jpg"
 import image from "../../public/image.jpg"
 import image2 from "../../public/journalCropped.jpg"
 import image3 from "../../public/image3.jpg"
 
-import Button from "../components/Button"
+import { HOST_ADDRESS } from "../components/contants"
 import HomeTabs from "../components/HomeTabs"
 import EditorLists from "../components/EditorLists"
-import ContactUsForm from "../components/ContactUsForm"
+import { SubscriptionButton, ContactFormSection, LatestIssueButton } from './HomeClientComponents'
 
 import { jointEditors, associateEditors, advisoryBoard } from "../../public/homePage"
-
-// import { useNavigate } from "react-router-dom"
 import styles from "./home.module.css"
 
-const Home = () => {
-  // const navigate = useNavigate()
-  const [latestJournalDetails, setLatestJournalDetails] = useState("")
-
-  // const fetchLatestJournalDetails = async() =>{
-  //   fetch(`${HOST_ADDRESS}/`, {
-  //     method:'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then(res => res.json())
-  //   .then(details => setLatestJournalDetails(details))
-  //   .catch(err => console.log(err))
-  // }
-
-  const handleLatestJournalDetails = () => {
-    navigate(
-      `/articles/?year=${latestJournalDetails._id}&issue=${latestJournalDetails.issue}&volume=${latestJournalDetails.volume}`,
-    )
+// Fetch latest journal details
+async function getLatestJournalDetails() {
+  try {
+    // Use the proper absolute URL with origin for server components
+    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
+    const host = process.env.VERCEL_URL || 'localhost:3000';
+    
+    const res = await fetch(`${protocol}://${host}/api/latest-journal`, {
+      cache: 'no-store', // Ensure fresh data
+    });
+    
+    if (!res.ok) {
+      throw new Error(`Failed to fetch latest journal: ${res.status}`);
+    }
+    
+    return await res.json();
+  } catch (error) {
+    console.error('Error fetching latest journal:', error);
+    return null;
   }
+}
 
-  // useEffect(()=>{
-  //   fetchLatestJournalDetails();
-  // },[])
+// Metadata export for SEO
+export async function generateMetadata() {
+  return {
+    title: 'Library Herald - Journal of Library and Information Science',
+    description: 'Library Herald is a leading journal in the field of Library and Information Science',
+    openGraph: {
+      title: 'Library Herald - Journal of Library and Information Science',
+      description: 'Library Herald is a leading journal in the field of Library and Information Science',
+      type: 'website',
+    }
+  };
+}
 
+export default async function Home() {
+  // Server-side data fetching
+  const latestJournalDetails = await getLatestJournalDetails() || {};
+  
+  // Prepare the latest journal URL for the button
+  const latestJournalUrl = latestJournalDetails._id ? 
+    `/articles/?year=${latestJournalDetails._id}&issue=${latestJournalDetails.issue}&volume=${latestJournalDetails.volume}` : 
+    '#';
+  
   return (
     <div className={styles.content}>
       {/* <div className={styles.strip}>
-     <div className={styles.flexContainer}>
-        <div className={styles.flexItem}>
-          <img className={styles.libh_img} src={book || "/placeholder.svg"} alt="lib herald" />
-        </div>
-        <div className={styles.flexItem}>
-          <div className={styles.flexTextContainer}>
-            <span className={styles.titleTxt}>WELCOME TO LIBRARY HERALD</span>
-            <p className={styles.s1P}>
-              Library Herald publishes peer-reviewed original contributions in
-              the field of Library and Information Science. It also incorporates
-              research reports and includes reviews of important Indian and
-              foreign publications. Special issues on various aspects of Library
-              and Information Science are also published from time to time. It
-              is published quarterly in March, June, September and December
-              every year.
+        <div className={styles.flexContainer}>
+          <div className={styles.flexItem}>
+            <Image 
+              className={styles.libh_img} 
+              src={book} 
+              alt="lib herald" 
+              priority
+              width={300}
+              height={200}
+            />
+          </div>
+          <div className={styles.flexItem}>
+            <p>
+              Library Herald is a prominent journal for Library and Information Science Professionals
+              published by Delhi Library Association.
             </p>
-            <p id="ph">Current Issue</p>
-            <button class="bg-blue w-40 h-11 rounded-lg hover:bg-red" style={{color:'white'}}  onClick={()=>handleLatestJournalDetails()}>{latestJournalDetails ? `Vol ${latestJournalDetails.volume} No. ${latestJournalDetails.issue} ${latestJournalDetails._id}` : '....'}</button>
           </div>
         </div>
-      </div>
-     </div> */}
+      </div> */}
 
       <div className={styles.hsection}>
         <div className={styles.s1}>
-          <img className={styles.libhImg} src={book || "/placeholder.svg"} alt="lib herald" />
+          <img className={styles.libhImg} src={book.src} alt="lib herald" />
           <div className={styles.s1Txt}>
             <span className={styles.titleTxt} id="welcome">
               WELCOME TO LIBRARY HERALD
@@ -81,7 +93,11 @@ const Home = () => {
               time to time. It is published quarterly in March, June, September and December every year.
             </p>
             <p id="ph">Current Issue</p>
-            {/* <button class="bg-blue w-40 h-11 rounded-lg hover:bg-red" style={{color:'white'}}  onClick={()=>handleLatestJournalDetails()}>{latestJournalDetails ? `Vol ${latestJournalDetails.volume} No. ${latestJournalDetails.issue} ${latestJournalDetails._id}` : '....'}</button> */}
+            {latestJournalDetails._id && (
+              <div className={styles.latestIssueBtn}>
+                <LatestIssueButton latestJournalUrl={latestJournalUrl} latestJournalDetails={latestJournalDetails}/>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -141,7 +157,7 @@ const Home = () => {
       <div className={styles.hsection} id="editorialAnchor">
         <div className={styles.s4} id="editorialAnchor">
           <div className={styles.s4Heading}>
-            <img src={image || "/placeholder.svg"} className={styles.s4Img} />
+            <img src={image.src} className={styles.s4Img} alt="Editor" />
             <span className={styles.titleTxt}>EDITORIAL BOARD</span>
           </div>
 
@@ -269,14 +285,14 @@ const Home = () => {
 
       <div className={styles.hsection}>
         <div className={styles.s10}>
-          <img src={image2 || "/placeholder.svg"} style={{ borderRadius: "5px" }} />
+          <img src={image2.src} style={{ borderRadius: "5px" }} alt="Journal" />
           <p
             style={{
               fontSize: "40px",
               lineHeight: "1.35em",
               fontWeight: "500",
               color: "white",
-              textShadow: "rgba(255, 255, 255, 0.6) 1px 1px 1px, rgba(0, 0, 0, 0.6) -1px -1px 1px;",
+             textShadow: "rgba(255, 255, 255, 0.6) 1px 1px 1px, rgba(0, 0, 0, 0.6) -1px -1px 1px",
               textAlign: "center",
             }}
           >
@@ -292,7 +308,7 @@ const Home = () => {
           >
             <b>On an annual subscription of Rs.2,000</b>
           </p>
-          <Button buttonText="Subscribe" bgcolor={"#fff2d4"} textColor={"black"} onClick={() => {}} />
+          <SubscriptionButton />
         </div>
       </div>
 
@@ -336,7 +352,7 @@ const Home = () => {
               Website:<a href="https://dlaindia.in/">dlaindia.in</a>
             </p>
           </div>
-          <img id="overlapingImg" src={image3 || "/placeholder.svg"} />
+          <img id="overlapingImg" src={image3.src} alt="Contact" />
         </div>
       </div>
 
@@ -364,14 +380,13 @@ const Home = () => {
           >
             Feel free to ask any queries
           </p>
-          <div id="contactAnchor">
-            <ContactUsForm />
-          </div>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default Home
+
+      {/* Contact form section */}
+      <ContactFormSection />
+    </div>
+  );
+}
 

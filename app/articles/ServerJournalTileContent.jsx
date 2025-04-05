@@ -1,13 +1,14 @@
-'use client';
+import ServerTile from '../components/ServerTile';
+import styles from '../styles/journalTile.module.css';
 
-import React, { useEffect } from "react";
-import Tile from "../components/Tile";
-import styles from "../styles/journalTile.module.css";
-
-export default function JournalTileContent({ initialData, year, volume, issue }) {
-  if (!initialData || initialData.length === 0) {
+/**
+ * Server component for the journal tile content
+ * This provides better SEO and initial rendering
+ */
+export default function ServerJournalTileContent({ data, year, volume, issue }) {
+  if (!data || data.length === 0) {
     return (
-      <div className="content">
+      <div className={styles.content || "content"}>
         <h1>No Articles Found</h1>
         <p>No articles found for the selected year and issue.</p>
       </div>
@@ -26,9 +27,10 @@ export default function JournalTileContent({ initialData, year, volume, issue })
       }}>
         Volume {volume}, Issue {issue} ({year})
       </h1>
+      
       <div className={styles.journalTiles || "journalTiles"}>
-        {initialData.map((article, index) => (
-          <Tile 
+        {data.map((article, index) => (
+          <ServerTile 
             key={index} 
             data={article} 
             year={year} 
@@ -39,4 +41,4 @@ export default function JournalTileContent({ initialData, year, volume, issue })
       </div>
     </div>
   );
-}
+} 

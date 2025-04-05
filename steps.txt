@@ -1,0 +1,11 @@
+I'm ready to help you optimize this application for better SEO by:
+Converting client components to server components where appropriate
+Implementing proper metadata for all pages
+Optimizing data fetching with SSR approaches
+Addressing CSS issues you may identify
+
+
+
+// to quest
+1. Let's create a server-side view tracking API endpoint: (track-view)
+2. route for likes, infact what all the routes.js do
