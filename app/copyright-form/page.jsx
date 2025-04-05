@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from "react";
 import copyrightForm from "./copyrightForm.module.css";
-import Button from "../Components/Button";
+import Button from "../components/Button";
 // import { HOST_ADDRESS } from '../constants';
 
 const CopyrightForm = () => {
